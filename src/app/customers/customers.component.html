@@ -1,0 +1,32 @@
+<div class="row">
+  <p id="notice">* Based on YTD for {{lastYear}}</p>
+  <table class="table table-responsive">
+    <tr>
+      <th (click)="sort('name')">
+        Customer
+        <span class="glyphicon glyphicon-triangle-top" aria-hidden="true" *ngIf="sortStyle('name', 'asc')"></span>
+        <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" *ngIf="sortStyle('name', 'desc')"></span>
+      </th>
+      <th (click)="sort('sales_ytd')">
+        Sales YTD
+        <span class="glyphicon glyphicon-triangle-top" aria-hidden="true" *ngIf="sortStyle('sales_ytd', 'asc')"></span>
+        <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" *ngIf="sortStyle('sales_ytd', 'desc')"></span>
+      </th>
+      <th (click)="sort('growth')">
+        Growth *
+        <span class="glyphicon glyphicon-triangle-top" aria-hidden="true" *ngIf="sortStyle('growth', 'asc')"></span>
+        <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" *ngIf="sortStyle('growth', 'desc')"></span>
+      </th>
+    </tr>
+    <tr (click)="goTo(customer.id)" *ngFor="let customer of customers" class="customer">
+      <td>{{customer["name"]}}</td>
+      <td>{{customer["sales_ytd"] | currency: 'USD':'symbol'}}</td>
+      <td [class]="compareYears(customer.sales_ytd, customer.sales_last_year)">
+        <span class="glyphicon glyphicon-triangle-top" aria-hidden="true" *ngIf="compareYears(customer.sales_ytd, customer.sales_last_year) == 'text-success'"></span>
+        <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" *ngIf="compareYears(customer.sales_ytd, customer.sales_last_year) == 'text-danger'"></span>
+         {{diff(customer.sales_ytd, customer.sales_last_year) | currency: 'USD':'symbol'}}
+         ({{diffPercentage(customer.sales_ytd, customer.sales_last_year) | percent}})
+      </td>
+    </tr>
+  </table>
+</div>

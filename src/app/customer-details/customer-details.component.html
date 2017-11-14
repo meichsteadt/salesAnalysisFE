@@ -1,0 +1,56 @@
+<app-customer-header [user]="user" [customer]="customer" [salesYTD]="salesYTD" [salesLastYear]="salesLastYear"></app-customer-header>
+
+<div class="row clearfix">
+  <div class="products col-md-5">
+    <div class="panel panel-default">
+      <div routerLink="/customers/{{customerId}}/products" class="navLink"><a>view all ></a></div>
+      <h1>Best Selling Products</h1>
+      <table class="table">
+        <tr>
+          <th>Number</th>
+          <th>Sales</th>
+          <th>Last Sold</th>
+          <th>% of Customer Sales</th>
+        </tr>
+        <tr *ngFor="let product of productsLooped">
+          <td>{{product[0]}}</td>
+          <td>{{product[1]["sales_ytd"]| currency: 'USD':'symbol'}}</td>
+          <td>{{product[1]["last_sold"]| date:'MMM yyyy'}}</td>
+          <td>{{product[1]["sales_ytd"]/salesYTD | percent}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="missingBestSellers col-md-4">
+    <div class="panel panel-default">
+      <div routerLink="/customers/{{customerId}}/recommended-items" class="navLink"><a>view all ></a></div>
+      <h1>Recommended Items</h1>
+      <table class="table">
+        <tr>
+          <th>Number</th>
+          <th>Projected Sales</th>
+        </tr>
+        <tr *ngFor="let item of recommendedItemsLooped">
+          <td>{{item["product_number"]}}</td>
+          <td>{{item["projected_sales"]| currency: 'USD':'symbol'}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="salesNumbers col-md-3">
+    <div class="panel panel-default">
+      <div routerLink="/customers/{{customerId}}/sales-numbers" class="navLink"><a>view all ></a></div>
+      <h1>Sales Numbers</h1>
+      <table class="table">
+        <tr>
+          <th>Date</th>
+          <th>Sales</th>
+        </tr>
+        <tr *ngFor="let number of salesNumbersLooped">
+          <td>{{toDate(number.year, number.month)| date:'MMM yyyy'}}</td>
+          <td>{{number.sales | currency: 'USD':'symbol'}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+.customer:hover {
+  cursor: pointer;
+  background-color: #eee;
+}
+
+#notice {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.row {
+  position: relative;
+}
+
+th:hover {
+  cursor: pointer;
+}

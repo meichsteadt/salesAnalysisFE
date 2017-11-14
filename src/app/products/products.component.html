@@ -1,0 +1,45 @@
+<div class="row">
+  <table class="table table-responsive">
+    <tr>
+      <th (click)="sort('position')">
+        Rank
+        <span class="glyphicon glyphicon-triangle-top" aria-hidden="true" *ngIf="sortStyle('position', 'asc')"></span>
+        <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" *ngIf="sortStyle('position', 'desc')"></span>
+      </th>
+      <th (click)="sort('number')">
+        Product
+        <span class="glyphicon glyphicon-triangle-top" aria-hidden="true" *ngIf="sortStyle('number', 'asc')"></span>
+        <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" *ngIf="sortStyle('number', 'desc')"></span>
+      </th>
+      <th (click)="sort('sales_ytd')">
+        Sales YTD
+        <span class="glyphicon glyphicon-triangle-top" aria-hidden="true" *ngIf="sortStyle('sales_ytd', 'asc')"></span>
+        <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" *ngIf="sortStyle('sales_ytd', 'desc')"></span>
+      </th>
+      <th (click)="sort('sales_ytd')">
+        % of Sales
+        <span class="glyphicon glyphicon-triangle-top" aria-hidden="true" *ngIf="sortStyle('sales_ytd', 'asc')"></span>
+        <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" *ngIf="sortStyle('sales_ytd', 'desc')"></span>
+      </th>
+      <th>Cummulative %</th>
+      <th (click)="sort('growth')">
+        Growth
+        <span class="glyphicon glyphicon-triangle-top" aria-hidden="true" *ngIf="sortStyle('growth', 'asc')"></span>
+        <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" *ngIf="sortStyle('growth', 'desc')"></span>
+      </th>
+    </tr>
+    <tr (click)="goTo(product['product'].id)" *ngFor="let product of products">
+      <td>{{product["product"]["position"]}}</td>
+      <td>{{product["product"]["number"]}}</td>
+      <td>{{product["product"]["sales_ytd"] | currency: 'USD':'symbol':'4.2-2'}}</td>
+      <td>{{product["product"]["sales_ytd"]/user.sales_ytd | percent}}</td>
+      <td>{{product["cumm_percentage"] | percent}}</td>
+      <td [class]="compareYears(product)">
+        <span class="glyphicon glyphicon-triangle-top" aria-hidden="true" *ngIf="compareYears(product) == 'text-success'"></span>
+        <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" *ngIf="compareYears(product) == 'text-danger'"></span>
+         {{product.growth | currency: 'USD':'symbol'}}
+         ({{product.growth/product["product"].sales_ytd | percent}})
+      </td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,13 @@
+<div class="col-md-6">
+  <h1>
+    {{customer?.name | titleCase}}:
+    <br>
+    {{salesYTD| currency: 'USD':'symbol':'4.2-2'}}
+    ({{salesYTD/user.sales_ytd | percent}})
+  </h1>
+  <h3 [class]="compareYears(salesYTD, salesLastYear)">
+    <span class="glyphicon glyphicon-triangle-top" aria-hidden="true" *ngIf="compareYears(salesYTD, salesLastYear) == 'text-success'"></span>
+    <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" *ngIf="compareYears(salesYTD, salesLastYear) == 'text-danger'"></span>
+    {{diff(salesYTD, salesLastYear) |currency: 'USD':'symbol':'4.2-2'}} ({{diff(salesYTD, salesLastYear)/salesYTD | percent}})
+  </h3>
+</div>

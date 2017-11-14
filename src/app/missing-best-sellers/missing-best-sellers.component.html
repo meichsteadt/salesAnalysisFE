@@ -1,0 +1,19 @@
+<div class="col-md-12">
+  <h1>{{customer?.name | titleCase}}</h1>
+  <h2>Sales YTD: {{salesYTD| currency: 'USD':'symbol':'4.2-2'}}</h2>
+</div>
+<div class="missingBestSellers col-md-12">
+  <div class="panel panel-default">
+    <h1>Missing Best Sellers</h1>
+    <table class="table">
+      <tr>
+        <th>Number</th>
+        <th>Projected Sales</th>
+      </tr>
+      <tr *ngFor="let seller of missingBestSellers">
+        <td>{{seller[0]}}</td>
+        <td>{{seller[1]["percentage"] * salesYTD| currency: 'USD':'symbol':'4.2-2'}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
