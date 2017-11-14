@@ -19,7 +19,7 @@ export class MissingBestSellersComponent implements OnInit {
     this.route.params.subscribe((urlParameters) => {
       this.productId = parseInt(urlParameters['id']);
     });
-    this.http.get("http://localhost:3000/customers/" + this.productId + ".json").subscribe(response => {
+    this.http.get("https://homelegance-sales-analysis.herokuapp.com/customers/" + this.productId + ".json").subscribe(response => {
       let customer = response["customer"]
       this.customer = new Customer(customer["id"], customer["name"], customer["state"], customer["position"]);
       this.missingBestSellers = response["missing_best_sellers"];

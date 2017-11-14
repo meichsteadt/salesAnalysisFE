@@ -7,6 +7,6 @@ export class ProductsService {
   constructor(private http: HttpClient) { }
 
   getProducts(limit, sortBy, sortOrder) {
-    return this.http.get("http://localhost:3000/products.json?limit=" + limit + "&sort_by=" + sortBy + "&sort_order=" + sortOrder);
+    return this.http.get("https://homelegance-sales-analysis.herokuapp.com/products.json?limit=" + limit + "&sort_by=" + sortBy + "&sort_order=" + sortOrder);
   }
 }

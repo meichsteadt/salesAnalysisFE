@@ -7,7 +7,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUser() {
-    return this.http.get("http://localhost:3000/users/1")
+    return this.http.get("https://homelegance-sales-analysis.herokuapp.com/users/1")
   }
 
 }
