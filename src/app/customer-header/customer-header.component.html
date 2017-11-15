@@ -3,7 +3,7 @@
     {{customer?.name | titleCase}}:
     <br>
     {{salesYTD| currency: 'USD':'symbol':'4.2-2'}}
-    ({{salesYTD/user.sales_ytd | percent}})
+    ({{salesYTD/user?.sales_ytd | percent}})
   </h1>
   <h3 [class]="compareYears(salesYTD, salesLastYear)">
     <span class="glyphicon glyphicon-triangle-top" aria-hidden="true" *ngIf="compareYears(salesYTD, salesLastYear) == 'text-success'"></span>

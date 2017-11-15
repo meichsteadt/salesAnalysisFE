@@ -15,16 +15,16 @@ export class UserHeaderComponent implements OnInit {
   }
 
   compareYears(thisYear, lastYear) {
-    if(thisYear >= lastYear) {
-      return "text-success"
+    if (thisYear >= lastYear) {
+      return 'text-success';
     }
     else {
-      return "text-danger"
+      return 'text-danger';
     }
   }
 
   diff(thisYear, lastYear) {
-    return Math.round((thisYear - lastYear) * 100)/100
+    return Math.round((thisYear - lastYear) * 100) / 100;
   }
 
 }

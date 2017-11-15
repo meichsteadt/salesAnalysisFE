@@ -10,13 +10,13 @@ import { CustomersService } from '../customers.service';
   providers: [ CustomersService ]
 })
 export class CustomersComponent implements OnInit {
-
-  constructor(private router: Router, private customersService: CustomersService, private userService: UserService) { }
   customers;
   user;
   lastYear = new Date().getFullYear() - 1;
-  sortBy: string = "sales_ytd";
-  sortOrder: string = "desc";
+  sortBy = "sales_ytd";
+  sortOrder = "desc";
+
+  constructor(private router: Router, private customersService: CustomersService, private userService: UserService) { }
   ngOnInit() {
     this.getCustomers(this.sortBy, this.sortOrder);
 

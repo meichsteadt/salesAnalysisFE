@@ -19,11 +19,9 @@ export class CustomerDetailsComponent implements OnInit {
   products;
   salesNumbers;
   recommendedItems;
-  comparisons;
-  productsLooped;
-  salesNumbersLooped;
-  recommendedItemsLooped;
-  comparisonsLooped;
+  missingBestSellers;
+  missingGrowthItems;
+
   lastYear = new Date().getFullYear() - 1;
   currentMonth: number = new Date().getMonth();
   constructor(private router: Router, private route: ActivatedRoute, private customerService: CustomersService, private userService: UserService) { }
@@ -45,11 +43,8 @@ export class CustomerDetailsComponent implements OnInit {
       this.products = response["products"];
       this.salesNumbers = response["sales_numbers"];
       this.recommendedItems = response["recommended_items"];
-      this.comparisons = response["comparisons"];
-      this.productsLooped = this.loop(10, response["products"]);
-      this.salesNumbersLooped = this.loop(this.currentMonth + 1, response["sales_numbers"]);
-      this.recommendedItemsLooped = this.loop(10, response["recommended_items"]);
-      this.comparisonsLooped = this.loop(10, response["comparisons"]);
+      this.missingBestSellers = response["missing_best_sellers"];
+      this.missingGrowthItems = response["missing_growth_items"];
       console.log(this.recommendedItems)
     });
   }

@@ -1,7 +1,7 @@
 <app-customer-header [user]="user" [customer]="customer" [salesYTD]="salesYTD" [salesLastYear]="salesLastYear"></app-customer-header>
 
 <div class="row clearfix">
-  <div class="products col-md-5">
+  <div class="products col-md-4">
     <div class="panel panel-default">
       <div routerLink="/customers/{{customerId}}/products" class="navLink"><a>view all ></a></div>
       <h1>Best Selling Products</h1>
@@ -12,7 +12,7 @@
           <th>Last Sold</th>
           <th>% of Customer Sales</th>
         </tr>
-        <tr *ngFor="let product of productsLooped">
+        <tr *ngFor="let product of products">
           <td>{{product[0]}}</td>
           <td>{{product[1]["sales_ytd"]| currency: 'USD':'symbol'}}</td>
           <td>{{product[1]["last_sold"]| date:'MMM yyyy'}}</td>
@@ -30,14 +30,48 @@
           <th>Number</th>
           <th>Projected Sales</th>
         </tr>
-        <tr *ngFor="let item of recommendedItemsLooped">
+        <tr *ngFor="let item of recommendedItems">
           <td>{{item["product_number"]}}</td>
           <td>{{item["projected_sales"]| currency: 'USD':'symbol'}}</td>
         </tr>
       </table>
     </div>
   </div>
-  <div class="salesNumbers col-md-3">
+  <div class="missingBestSellers col-md-4">
+    <div class="panel panel-default">
+      <div routerLink="/customers/{{customerId}}/recommended-items" class="navLink"><a>view all ></a></div>
+      <h1>Missing Best Sellers</h1>
+      <table class="table">
+        <tr>
+          <th>Number</th>
+          <th>Projected Sales</th>
+        </tr>
+        <tr *ngFor="let seller of missingBestSellers">
+          <td>{{seller[0]}}</td>
+          <td>{{seller[1]["sales"]| currency: 'USD':'symbol'}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="missingBestSellers col-md-4">
+    <div class="panel panel-default">
+      <div routerLink="/customers/{{customerId}}/recommended-items" class="navLink"><a>view all ></a></div>
+      <h1>Missing Growth Items</h1>
+      <table class="table">
+        <tr>
+          <th>Number</th>
+          <th>Sales YTD</th>
+          <th>Growth</th>
+        </tr>
+        <tr *ngFor="let item of missingGrowthItems">
+          <td>{{item[0]}}</td>
+          <td>{{item[1]["sales_ytd"]| currency: 'USD':'symbol'}}</td>
+          <td>{{item[1]["growth"]| currency: 'USD':'symbol'}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="salesNumbers col-md-4">
     <div class="panel panel-default">
       <div routerLink="/customers/{{customerId}}/sales-numbers" class="navLink"><a>view all ></a></div>
       <h1>Sales Numbers</h1>
@@ -46,7 +80,7 @@
           <th>Date</th>
           <th>Sales</th>
         </tr>
-        <tr *ngFor="let number of salesNumbersLooped">
+        <tr *ngFor="let number of salesNumbers">
           <td>{{toDate(number.year, number.month)| date:'MMM yyyy'}}</td>
           <td>{{number.sales | currency: 'USD':'symbol'}}</td>
         </tr>
